@@ -16,7 +16,7 @@ namespace ConnectTest
     {
 
         public static bool isRunning = false;
-        public static string version = "0.2";
+        public static string version = "0.3";
 
         public Form1()
         {
@@ -32,24 +32,45 @@ namespace ConnectTest
                 minute.Text = txt.Split(' ')[1];
                 second.Text = txt.Split(' ')[2];
                 site.Text = txt.Split(' ')[3];
+
+                succ.Checked = bool.Parse(txt.Split(' ')[4]);
+                fail.Checked = bool.Parse(txt.Split(' ')[5]);
+                attamp.Checked = bool.Parse(txt.Split(' ')[6]);
+                showSec.Text = txt.Split(' ')[7];
             }
 
             ver.Text = string.Format("Connect Tester v{0} by NamuTree0345", version);
+        }
+
+        private void changeEnabled(bool enabled) {
+            hour.Enabled = enabled;
+            minute.Enabled = enabled;
+            second.Enabled = enabled;
+
+            site.Enabled = enabled;
+
+            succ.Enabled = enabled;
+            fail.Enabled = enabled;
+            attamp.Enabled = enabled;
+            showSec.Enabled = enabled;
+
+            button2.Enabled = enabled;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             
 
-            if (isRunning) { checkTimer.Stop();  isRunning = false; button1.Text = "시작/설정 저장"; } else {
+            if (isRunning) { checkTimer.Stop(); isRunning = false; changeEnabled(true); button1.Text = "시작/설정 저장"; } else {
                 try
                 {
-                    
+                    changeEnabled(false);
                     checkTimer.Interval = getMs(int.Parse(hour.Text), int.Parse(minute.Text), int.Parse(second.Text));
+                    int.Parse(showSec.Text);
                     checkTimer.Start();
                     isRunning = true;
                     button1.Text = "종료";
-                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\ConnectTest_Conf.txt", hour.Text + " " + minute.Text + " " + second.Text + " " + site.Text);
+                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\ConnectTest_Conf.txt", string.Format("{0} {1} {2} {3} {4} {5} {6} {7}", hour.Text, minute.Text, second.Text, site.Text, succ.Checked, fail.Checked, attamp.Checked, int.Parse(showSec.Text)));
                 }
                 catch (FormatException)
                 {
@@ -65,24 +86,39 @@ namespace ConnectTest
             return (seconds * 1000) + (minute * 60000) + (hour * 600000);
         }
 
+        public static int getMs(int seconds) {
+            return seconds * 1000;
+        }
+
         private void checkTimer_Tick(object sender, EventArgs e)
         {
-            notifyIcon.BalloonTipTitle = "HTTP 연결 확인";
-            notifyIcon.BalloonTipText = "연결 상태 확인중...";
-            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             try
             {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(site.Text);
-                req.Method = "GET";
-                using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+                notifyIcon.BalloonTipTitle = "HTTP 연결 확인";
+                notifyIcon.BalloonTipText = "연결 상태 확인중...";
+                notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                if (attamp.Checked) notifyIcon.ShowBalloonTip(getMs(int.Parse(showSec.Text)));
+                try
                 {
-                    notifyIcon.BalloonTipText = "연결 상태: " + resp.StatusCode;
-                    notifyIcon.ShowBalloonTip(3000);
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(site.Text);
+                    req.Method = "GET";
+                    using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
+                    {
+                        notifyIcon.BalloonTipText = "연결 상태: " + resp.StatusCode;
+                        if (succ.Checked) notifyIcon.ShowBalloonTip(getMs(int.Parse(showSec.Text)));
+                    }
                 }
-            } catch {
+                catch
+                {
+                    notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
+                    notifyIcon.BalloonTipText = "연결 상태: 오류!";
+                    if (fail.Checked) notifyIcon.ShowBalloonTip(getMs(int.Parse(showSec.Text)));
+                }
+            }
+            catch {
                 notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
                 notifyIcon.BalloonTipText = "연결 상태: 오류!";
-                notifyIcon.ShowBalloonTip(3000);
+                if (fail.Checked) notifyIcon.ShowBalloonTip(getMs(int.Parse(showSec.Text)));
             }
         }
 

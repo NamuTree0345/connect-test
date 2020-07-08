@@ -8,3 +8,13 @@ C:\Users\namutree0345\source\repos\ConnectTest\ConnectTest\obj\Debug\ConnectTest
 C:\Users\namutree0345\source\repos\ConnectTest\ConnectTest\obj\Debug\ConnectTest.csproj.CoreCompileInputs.cache
 C:\Users\namutree0345\source\repos\ConnectTest\ConnectTest\obj\Debug\ConnectTest.exe
 C:\Users\namutree0345\source\repos\ConnectTest\ConnectTest\obj\Debug\ConnectTest.pdb
+D:\source\ConnectTest\ConnectTest\bin\Debug\ConnectTest.exe.config
+D:\source\ConnectTest\ConnectTest\bin\Debug\ConnectTest.exe
+D:\source\ConnectTest\ConnectTest\bin\Debug\ConnectTest.pdb
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.csprojAssemblyReference.cache
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.Form1.resources
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.Properties.Resources.resources
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.csproj.GenerateResource.cache
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.csproj.CoreCompileInputs.cache
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.exe
+D:\source\ConnectTest\ConnectTest\obj\Debug\ConnectTest.pdb

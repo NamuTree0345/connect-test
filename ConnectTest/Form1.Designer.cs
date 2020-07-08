@@ -46,12 +46,14 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.succ = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.fail = new System.Windows.Forms.CheckBox();
+            this.attamp = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.showSec = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,7 +63,7 @@
             // ver
             // 
             this.ver.AutoSize = true;
-            this.ver.Location = new System.Drawing.Point(10, 267);
+            this.ver.Location = new System.Drawing.Point(18, 295);
             this.ver.Name = "ver";
             this.ver.Size = new System.Drawing.Size(198, 12);
             this.ver.TabIndex = 0;
@@ -197,61 +199,63 @@
             this.groupBox1.Controls.Add(this.second);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(368, 132);
+            this.groupBox1.Size = new System.Drawing.Size(368, 153);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "설정";
             // 
-            // checkBox1
+            // succ
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(11, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 16);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "연결 성공";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.succ.AutoSize = true;
+            this.succ.Checked = true;
+            this.succ.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.succ.Location = new System.Drawing.Point(11, 21);
+            this.succ.Name = "succ";
+            this.succ.Size = new System.Drawing.Size(76, 16);
+            this.succ.TabIndex = 3;
+            this.succ.Text = "연결 성공";
+            this.succ.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox3);
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.attamp);
+            this.groupBox2.Controls.Add(this.fail);
+            this.groupBox2.Controls.Add(this.succ);
+            this.groupBox2.Controls.Add(this.showSec);
+            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(8, 77);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(354, 49);
+            this.groupBox2.Size = new System.Drawing.Size(354, 70);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "언제 알림을 보낼까요?";
             // 
-            // checkBox2
+            // fail
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(103, 20);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(76, 16);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "연결 실패";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.fail.AutoSize = true;
+            this.fail.Checked = true;
+            this.fail.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fail.Location = new System.Drawing.Point(103, 20);
+            this.fail.Name = "fail";
+            this.fail.Size = new System.Drawing.Size(76, 16);
+            this.fail.TabIndex = 3;
+            this.fail.Text = "연결 실패";
+            this.fail.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // attamp
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(195, 20);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(76, 16);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "연결 시도";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.attamp.AutoSize = true;
+            this.attamp.Location = new System.Drawing.Point(195, 20);
+            this.attamp.Name = "attamp";
+            this.attamp.Size = new System.Drawing.Size(76, 16);
+            this.attamp.TabIndex = 3;
+            this.attamp.Text = "연결 시도";
+            this.attamp.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(13, 151);
+            this.groupBox3.Location = new System.Drawing.Point(13, 171);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(367, 51);
             this.groupBox3.TabIndex = 6;
@@ -262,18 +266,35 @@
             // 
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Location = new System.Drawing.Point(13, 209);
+            this.groupBox4.Location = new System.Drawing.Point(12, 228);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(367, 55);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "시작";
             // 
+            // showSec
+            // 
+            this.showSec.Location = new System.Drawing.Point(11, 43);
+            this.showSec.Name = "showSec";
+            this.showSec.Size = new System.Drawing.Size(260, 21);
+            this.showSec.TabIndex = 1;
+            this.showSec.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(277, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 12);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "초 만큼 알림";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 285);
+            this.ClientSize = new System.Drawing.Size(389, 316);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -315,11 +336,13 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox attamp;
+        private System.Windows.Forms.CheckBox fail;
+        private System.Windows.Forms.CheckBox succ;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox showSec;
+        private System.Windows.Forms.Label label7;
     }
 }
 
